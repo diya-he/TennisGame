@@ -1,11 +1,18 @@
 package PoolGame;
 
+import PoolGame.impl.Context;
+import PoolGame.impl.ContinueOperation;
+import PoolGame.impl.LossOperation;
+import PoolGame.impl.WinOperation;
 import PoolGame.items.Ball;
 import PoolGame.items.Balls;
 
 import PoolGame.items.Table;
 import javafx.animation.TranslateTransition;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+
+import java.util.List;
 
 
 public class Game {
@@ -13,7 +20,7 @@ public class Game {
     private TranslateTransition translateTransition;
 
     private static final double stopVel = 0.1;
-    public void tick(Balls balls, Table table, Double FRAMETIME) {
+    public void tick(Balls balls, Table table, Double FRAMETIME, List<Circle> list) {
         // TODO: Implement game logic
         //小球移动逻辑
         for (Integer key: balls.getBalls().keySet()){
@@ -57,6 +64,28 @@ public class Game {
                     balls.getBalls().get(key).setYVel(0);
                 }
             }
+        }
+
+
+        Strategy.init(balls);
+        //检测碰撞
+        Strategy.detectCollisionsOfBalls(balls, table);
+        Strategy.detectCollisionsOfWall(balls, table);
+        int check = Strategy.operation(balls, list);
+        if(check == 1)
+        {
+            Context context = new Context(new WinOperation());
+            context.executeStrategy();
+        }
+        if(check == 0)
+        {
+            Context context = new Context(new LossOperation());
+            context.executeStrategy();
+        }
+        if(check == 2)
+        {
+            Context context = new Context(new ContinueOperation());
+            context.executeStrategy();
         }
 
     }

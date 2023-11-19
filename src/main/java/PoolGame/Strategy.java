@@ -3,13 +3,41 @@ package PoolGame;
 import PoolGame.items.Ball;
 import PoolGame.items.Balls;
 import PoolGame.items.Table;
+import javafx.scene.shape.Circle;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class Strategy {
+
+    private static Map<Integer, Integer> account;
+
+
+    public static void init(Balls balls)
+    {
+        //设置一下初始account
+        account = new HashMap<>();
+        for(Map.Entry<Integer, Ball> entry: balls.getBalls().entrySet())
+        {
+            if("white".equals(entry.getValue().getColour()))
+            {
+                account.put(entry.getKey(), 1);
+                System.out.println(account.get(entry.getKey()));
+            }
+
+            if("blue".equals(entry.getValue().getColour()))
+            {
+                account.put(entry.getKey(), 2);
+                System.out.println(account.get(entry.getKey()));
+            }
+
+            if("red".equals(entry.getValue().getColour()))
+            {
+                account.put(entry.getKey(), 1);
+                System.out.println(account.get(entry.getKey()));
+            }
+        }
+    }
+
     public static void detectCollisionsOfBalls(Balls balls, Table table) {
         Map<Integer, Ball> map = balls.getBalls();
         for (Map.Entry<Integer, Ball> entry : map.entrySet()) {
@@ -103,6 +131,83 @@ public class Strategy {
                 }
             }
         }
+    }
+
+
+    public static int operation(Balls balls, List<Circle> list){
+        Map<Integer, Ball> map = balls.getBalls();
+        if(!map.isEmpty())
+        {
+            System.out.println("当前还有球");
+            if(map.containsKey(0))
+            {
+                System.out.println("当前还有白球");
+                if(map.size() == 1)
+                {
+                    System.out.println("当前只有白球");
+                    return 1;
+                }
+                else
+                {
+                    System.out.println("当前除了白球, 还有其他球");
+                    for(Map.Entry<Integer, Ball> entry: map.entrySet())
+                    {
+                        Integer index = entry.getKey();
+                        Ball ball = entry.getValue();
+                        for(Circle hole: list)
+                        {
+                            if((Math.sqrt(Math.pow(ball.getXPos() - hole.getCenterX(), 2) + Math.pow(ball.getYPos() - hole.getCenterY(), 2)) <= hole.getRadius()))
+                            {
+                                System.out.println("进洞了");
+                                if("blue".equals(ball.getColour()) && account.get(index) == 1)
+                                {
+                                    account.put(index, account.get(index) - 1);
+                                    System.out.println("我删了蓝色球");
+                                    map.remove(index);
+
+                                }
+
+                                if("blue".equals(ball.getColour()) && account.get(index) == 2)
+                                {
+                                    account.put(index, account.get(index) - 1);
+                                    //更新蓝色小球到初始位置
+                                    ball.setXPos(100);
+                                    ball.getShape().setCenterX(100);
+                                    ball.setYPos(100);
+                                    ball.getShape().setCenterY(100);
+                                }
+
+                                if("red".equals(ball.getColour()) && account.get(index) == 1)
+                                {
+                                    account.put(index, account.get(index) - 1);
+                                    System.out.println("我删了红球");
+                                    map.remove(index);
+                                }
+
+                                if("white".equals(ball.getColour()) && account.get(index) == 1)
+                                {
+                                    account.put(index, account.get(index) - 1);
+                                    System.out.println("我删了白球");
+                                    map.remove(index);
+                                }
+                            }
+                        }
+                    }
+                    return 2;
+                }
+
+            }
+            else
+            {
+                return 0;
+            }
+
+        }
+        else
+        {
+            return 0;
+        }
+
     }
 
 }

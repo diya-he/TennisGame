@@ -11,7 +11,7 @@ public class Table {
 
     private String colour = "green";
 
-    private double radius = 20;
+    private double radius = 30;
 
     private List<List<Double>> holes = new ArrayList<>();
     public Table(double length, double height, double friction, String colour) {
