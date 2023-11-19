@@ -19,6 +19,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,12 +61,19 @@ public class App extends Application {
         root.getChildren().add(canvas);
         Rectangle rectangle = new Rectangle(length, height);
         rectangle.setFill(Color.valueOf(table.getColour()));
+        List<Circle> list = new ArrayList<>();
         Circle hole1 = new Circle(holes.get(1).get(0), holes.get(1).get(1), radius, Color.valueOf("black"));
+        list.add(hole1);
         Circle hole2 = new Circle(holes.get(2).get(0), holes.get(2).get(1), radius, Color.valueOf("black"));
+        list.add(hole2);
         Circle hole3 = new Circle(holes.get(3).get(0), holes.get(3).get(1), radius, Color.valueOf("black"));
+        list.add(hole3);
         Circle hole4 = new Circle(holes.get(4).get(0), holes.get(4).get(1), radius, Color.valueOf("black"));
+        list.add(hole4);
         Circle hole5 = new Circle(holes.get(5).get(0), holes.get(5).get(1), radius, Color.valueOf("black"));
+        list.add(hole5);
         Circle hole6 = new Circle(holes.get(6).get(0), holes.get(6).get(1), radius, Color.valueOf("black"));
+        list.add(hole6);
         Balls balls =new Balls();
         root.getChildren().add(rectangle);
         root.getChildren().add(hole1);root.getChildren().add(hole2);root.getChildren().add(hole3);root.getChildren().add(hole4);root.getChildren().add(hole5);root.getChildren().add(hole6);
@@ -85,7 +93,7 @@ public class App extends Application {
         // setup frames
         Timeline timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
-        KeyFrame frame = new KeyFrame(Duration.seconds(FRAMETIME), (actionEvent) -> game.tick(balls,table,FRAMETIME));
+        KeyFrame frame = new KeyFrame(Duration.seconds(FRAMETIME), (actionEvent) -> game.tick(balls,table,FRAMETIME, list));
         timeline.getKeyFrames().add(frame);
         timeline.play();
     }
