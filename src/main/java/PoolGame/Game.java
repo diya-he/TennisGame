@@ -4,7 +4,6 @@ import PoolGame.impl.Context;
 import PoolGame.impl.ContinueOperation;
 import PoolGame.impl.LossOperation;
 import PoolGame.impl.WinOperation;
-import PoolGame.items.Ball;
 import PoolGame.items.Balls;
 
 import PoolGame.items.Table;
@@ -13,7 +12,6 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 
 import javax.print.attribute.standard.PrinterLocation;
 import java.util.List;
