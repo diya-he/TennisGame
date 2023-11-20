@@ -108,18 +108,15 @@ public class Game {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Game Over");
         alert.setHeaderText("Game Over!!! You win");
-        alert.setContentText("Do you want to restart the game or exit?");
+        alert.setContentText("If you want to continue the game, please restart the program.");
 
-        ButtonType restartButton = new ButtonType("Restart");
+
         ButtonType exitButton = new ButtonType("Exit");
 
-        alert.getButtonTypes().setAll(restartButton, exitButton);
+        alert.getButtonTypes().setAll(exitButton);
 
         alert.showAndWait().ifPresent(response -> {
-            if (response == restartButton) {
-                // Handle restart logic (e.g., reset game state)
-                // You may need to add a method like game.restart() and implement it accordingly
-            } else if (response == exitButton) {
+            if (response == exitButton) {
                 // Exit the application
                 Platform.exit();
             }
@@ -130,18 +127,15 @@ public class Game {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Game Over");
         alert.setHeaderText("Game Over!!! You lose");
-        alert.setContentText("Do you want to restart the game or exit?");
+        alert.setContentText("If you want to continue the game, please restart the program.");
 
-        ButtonType restartButton = new ButtonType("Restart");
+
         ButtonType exitButton = new ButtonType("Exit");
 
-        alert.getButtonTypes().setAll(restartButton, exitButton);
+        alert.getButtonTypes().setAll(exitButton);
 
         alert.showAndWait().ifPresent(response -> {
-            if (response == restartButton) {
-                // Handle restart logic (e.g., reset game state)
-                // You may need to add a method like game.restart() and implement it accordingly
-            } else if (response == exitButton) {
+            if (response == exitButton) {
                 // Exit the application
                 Platform.exit();
             }

@@ -1,27 +1,26 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-interface WinStrategy
-class ContinueOperation
-class LossOperation
-class WinOperation
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+interface Strategy {
+  + algorithm(): void
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class ConcreteStrategyA {
+  + algorithm(): void
 }
+
+class ConcreteStrategyB {
+  + algorithm(): void
+}
+
+class Context {
+  - strategy: Strategy
+  + setStrategy(strategy: Strategy): void
+  + executeAlgorithm(): void
+}
+
+Context *-- Strategy : has-a
+
+Context --> ConcreteStrategyA : uses
+Context --> ConcreteStrategyB : uses
 
 @enduml
