@@ -13,6 +13,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class Game {
@@ -20,13 +21,14 @@ public class Game {
     private TranslateTransition translateTransition;
 
     private static final double stopVel = 0.1;
-    public void tick(Balls balls, Table table, Double FRAMETIME, List<Circle> list) {
+    public void tick(Balls balls, Table table, Double FRAMETIME, List<Circle> list, Map<Integer, List<Double>> bluePosList) {
         // TODO: Implement game logic
         //小球移动逻辑
         for (Integer key: balls.getBalls().keySet()){
             balls.getBalls().get(key).setXPos(balls.getBalls().get(key).getXPos()+balls.getBalls().get(key).getXVel());
             balls.getBalls().get(key).setYPos(balls.getBalls().get(key).getYPos()+balls.getBalls().get(key).getYVel());
         }
+
         //检测碰撞
         Strategy.detectCollisionsOfBalls(balls, table);
         Strategy.detectCollisionsOfWall(balls, table);
@@ -67,11 +69,9 @@ public class Game {
         }
 
 
-        Strategy.init(balls);
-        //检测碰撞
-        Strategy.detectCollisionsOfBalls(balls, table);
-        Strategy.detectCollisionsOfWall(balls, table);
-        int check = Strategy.operation(balls, list);
+
+
+        int check = Strategy.operation(balls, list, bluePosList);
         if(check == 1)
         {
             Context context = new Context(new WinOperation());
