@@ -2,6 +2,7 @@ package PoolGame;
 
 import PoolGame.items.Ball;
 import PoolGame.items.Balls;
+import PoolGame.items.Factory;
 import PoolGame.items.Table;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -40,17 +41,9 @@ public class App extends Application {
         // setup drawables
         Game game = new Game();
 
-        String path = "src/main/resources/config.json";
-        JSONParser parser = new JSONParser();
-        Object object = parser.parse(new FileReader(path));
-        JSONObject jsonObject = (JSONObject) object;
+        Table table = Factory.createTable();//工厂模式生成Table
+        Balls balls = Factory.createBalls();//工厂模式生成Balls
 
-        JSONObject jsonTable = (JSONObject) jsonObject.get("Table");
-        String tableColour = (String) jsonTable.get("colour");
-        Long tableX = (Long) ((JSONObject) jsonTable.get("size")).get("x");
-        Long tableY = (Long) ((JSONObject) jsonTable.get("size")).get("y");
-        Double tableFriction = (Double) jsonTable.get("friction");
-        Table table = new Table(tableX, tableY, tableFriction, tableColour);
         double length = table.getLength();
         double height = table.getHeight();
 //        System.out.println(height);
@@ -74,7 +67,7 @@ public class App extends Application {
         list.add(hole5);
         Circle hole6 = new Circle(holes.get(6).get(0), holes.get(6).get(1), radius, Color.valueOf("black"));
         list.add(hole6);
-        Balls balls =new Balls();
+
         Map<Integer, List<Double>> bluePosList = new HashMap<>();
         for(Map.Entry<Integer, Ball> entry: balls.getBalls().entrySet())
         {

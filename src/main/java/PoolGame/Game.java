@@ -4,13 +4,11 @@ import PoolGame.impl.Context;
 import PoolGame.impl.ContinueOperation;
 import PoolGame.impl.LossOperation;
 import PoolGame.impl.WinOperation;
-import PoolGame.items.Ball;
 import PoolGame.items.Balls;
 
 import PoolGame.items.Table;
 import javafx.animation.TranslateTransition;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 
 import java.util.List;
 import java.util.Map;
