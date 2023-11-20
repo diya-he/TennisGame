@@ -75,6 +75,17 @@ public class App extends Application {
         Circle hole6 = new Circle(holes.get(6).get(0), holes.get(6).get(1), radius, Color.valueOf("black"));
         list.add(hole6);
         Balls balls =new Balls();
+        Map<Integer, List<Double>> bluePosList = new HashMap<>();
+        for(Map.Entry<Integer, Ball> entry: balls.getBalls().entrySet())
+        {
+            if("blue".equals(entry.getValue().getColour()))
+            {
+                List<Double> list1 = new ArrayList<>();
+                list1.add(entry.getValue().getXPos());
+                list1.add(entry.getValue().getYPos());
+                bluePosList.put(entry.getKey(), list1);
+            }
+        }
         root.getChildren().add(rectangle);
         root.getChildren().add(hole1);root.getChildren().add(hole2);root.getChildren().add(hole3);root.getChildren().add(hole4);root.getChildren().add(hole5);root.getChildren().add(hole6);
         for (Integer key: balls.getBalls().keySet()){
@@ -93,7 +104,8 @@ public class App extends Application {
         // setup frames
         Timeline timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
-        KeyFrame frame = new KeyFrame(Duration.seconds(FRAMETIME), (actionEvent) -> game.tick(balls,table,FRAMETIME, list));
+        Strategy.init(balls);
+        KeyFrame frame = new KeyFrame(Duration.seconds(FRAMETIME), (actionEvent) -> game.tick(balls,table,FRAMETIME, list, bluePosList));
         timeline.getKeyFrames().add(frame);
         timeline.play();
     }

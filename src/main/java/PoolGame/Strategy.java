@@ -134,7 +134,7 @@ public class Strategy {
     }
 
 
-    public static int operation(Balls balls, List<Circle> list){
+    public static int operation(Balls balls, List<Circle> list, Map<Integer, List<Double>> bluePos){
         Map<Integer, Ball> map = balls.getBalls();
         if(!map.isEmpty())
         {
@@ -163,7 +163,9 @@ public class Strategy {
                                 {
                                     account.put(index, account.get(index) - 1);
                                     System.out.println("我删了蓝色球");
+                                    map.get(index).getShape().setVisible(false);
                                     map.remove(index);
+
 
                                 }
 
@@ -171,16 +173,20 @@ public class Strategy {
                                 {
                                     account.put(index, account.get(index) - 1);
                                     //更新蓝色小球到初始位置
-                                    ball.setXPos(100);
-                                    ball.getShape().setCenterX(100);
-                                    ball.setYPos(100);
-                                    ball.getShape().setCenterY(100);
+                                    List<Double> bluePosList = bluePos.get(index);
+                                    ball.setXPos(bluePosList.get(0));
+                                    ball.setXVel(0);
+                                    ball.setYVel(0);
+
+                                    ball.setYPos(bluePosList.get(1));
+
                                 }
 
                                 if("red".equals(ball.getColour()) && account.get(index) == 1)
                                 {
                                     account.put(index, account.get(index) - 1);
                                     System.out.println("我删了红球");
+                                    map.get(index).getShape().setVisible(false);
                                     map.remove(index);
                                 }
 
@@ -188,6 +194,7 @@ public class Strategy {
                                 {
                                     account.put(index, account.get(index) - 1);
                                     System.out.println("我删了白球");
+                                    map.get(index).getShape().setVisible(false);
                                     map.remove(index);
                                 }
                             }
