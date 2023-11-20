@@ -14,4 +14,8 @@ public class Context {
     public int executeStrategy(){
         return strategy.doOperation();
     }
+
+    public void setStrategy(WinStrategy strategy) {
+        this.strategy = strategy;
+    }
 }
