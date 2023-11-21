@@ -138,18 +138,18 @@ public class Strategy {
         Map<Integer, Ball> map = balls.getBalls();
         if(!map.isEmpty())
         {
-            System.out.println("当前还有球");
+//            System.out.println("当前还有球");
             if(map.containsKey(0))
             {
-                System.out.println("当前还有白球");
+//                System.out.println("当前还有白球");
                 if(map.size() == 1)
                 {
-                    System.out.println("当前只有白球");
+//                    System.out.println("当前只有白球");
                     return 1;
                 }
                 else
                 {
-                    System.out.println("当前除了白球, 还有其他球");
+//                    System.out.println("当前除了白球, 还有其他球");
                     for(Map.Entry<Integer, Ball> entry: map.entrySet())
                     {
                         Integer index = entry.getKey();
@@ -158,11 +158,11 @@ public class Strategy {
                         {
                             if((Math.sqrt(Math.pow(ball.getXPos() - hole.getCenterX(), 2) + Math.pow(ball.getYPos() - hole.getCenterY(), 2)) <= hole.getRadius()))
                             {
-                                System.out.println("进洞了");
+//                                System.out.println("进洞了");
                                 if("blue".equals(ball.getColour()) && account.get(index) == 1)
                                 {
                                     account.put(index, account.get(index) - 1);
-                                    System.out.println("我删了蓝色球");
+//                                    System.out.println("我删了蓝色球");
                                     map.get(index).getShape().setVisible(false);
                                     map.remove(index);
 
@@ -185,7 +185,7 @@ public class Strategy {
                                 if("red".equals(ball.getColour()) && account.get(index) == 1)
                                 {
                                     account.put(index, account.get(index) - 1);
-                                    System.out.println("我删了红球");
+//                                    System.out.println("我删了红球");
                                     map.get(index).getShape().setVisible(false);
                                     map.remove(index);
                                 }
@@ -193,7 +193,7 @@ public class Strategy {
                                 if("white".equals(ball.getColour()) && account.get(index) == 1)
                                 {
                                     account.put(index, account.get(index) - 1);
-                                    System.out.println("我删了白球");
+//                                    System.out.println("我删了白球");
                                     map.get(index).getShape().setVisible(false);
                                     map.remove(index);
                                 }

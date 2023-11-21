@@ -6,7 +6,7 @@ public class WinOperation implements WinStrategy {
     @Override
     public int doOperation()
     {
-        System.out.println("成功");
+//        System.out.println("成功");
         return 0;
     }
 }

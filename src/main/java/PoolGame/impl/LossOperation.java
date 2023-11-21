@@ -6,7 +6,7 @@ public class LossOperation implements WinStrategy {
     @Override
     public int doOperation()
     {
-        System.out.println("你已失败");
+//        System.out.println("你已失败");
         return 0;
     }
 
