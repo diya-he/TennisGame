@@ -19,7 +19,7 @@ public class ConfigReader {
 		JSONObject jsonBalls = (JSONObject) jsonObject.get("Balls");
 		List jsonballs = (List) jsonBalls.get("ball");
 		return jsonballs;
-	}
+  }
 	public static JSONObject parseTable() throws IOException, ParseException {
 		JSONParser parser = new JSONParser();
 		Object object = parser.parse(new FileReader(path));
@@ -29,3 +29,4 @@ public class ConfigReader {
 	}
 
 }
+
