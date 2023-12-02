@@ -1,21 +1,16 @@
-# PoolGame
+# 桌球游戏
 
-**Note 1:** The friction value in the config file is used as a multiplier in the
-implementation. As the friction approaches 0, the friction decreases. As friction
-approach 1, the friction increases. A high value of friction will make it 
-impossible for a ball to move. Range of valid friction is: `0 < friction < 1`.
+## 注
 
-**Note 2:** While the forces applied to the cue ball is variable based on the
-length of the line shown when dragging from the cue ball, there is a maximum cap
-on the force.
+本实现中：
 
-**Note 3:** The center of the ball needs to be in the pocket for the code to 
-consider it as "in the pocket" instead of its rectangular bound just intersecting
-with the pocket's rectangular bound.
+1. 配置文件中的摩擦力值是一个乘法因子。该值越小，摩擦力越小。过高的值会让球无法移动。有效范围： `0 < friction < 1`。
+2. 尽管击球时，拖动显示的线可以任意长，实际作用的力有个最大值。
+3. 球的中心必须进入球袋的范围，而不仅是它们的矩形边界接触，才认为球入袋。
 
-## Commands
+## 命令说明
 
-* Run: `gradle run` to load default config from resources folder or 
-`gradle run --args="'insert_config_file_path'"` to load custom config.
+- 运行 `gradle run` 将使用 `resources` 文件夹中的默认配置文件。使用 `gradle run --args="${CONFIG_PATH}"` 来加载自定义配置文件。
+- 运行 `gradle javadoc` 可以生成自动文档。
 
-* Generate documentation:`gradle javadoc`
+
