@@ -1,16 +1,15 @@
-# 桌球游戏
+# Pool games
 
-## 注
+## Note
 
-本实现中：
+In this realization:
 
-1. 配置文件中的摩擦力值是一个乘法因子。该值越小，摩擦力越小。过高的值会让球无法移动。有效范围： `0 < friction < 1`。
-2. 尽管击球时，拖动显示的线可以任意长，实际作用的力有个最大值。
-3. 球的中心必须进入球袋的范围，而不仅是它们的矩形边界接触，才认为球入袋。
+1. the friction value in the configuration file is a multiplication factor. The smaller the value, the lower the friction. Too high a value will prevent the ball from moving. Valid range: `0 < friction < 1`.
+2. Even though the drag display can be as long as you want when hitting the ball, there is a maximum value for the actual force applied.
+3. The centers of the balls must be within the boundaries of the pockets, not just their rectangular boundaries in contact, for the balls to be considered in the pockets.
 
-## 命令说明
+## Command Description
 
-- 运行 `gradle run` 将使用 `resources` 文件夹中的默认配置文件。使用 `gradle run --args="${CONFIG_PATH}"` 来加载自定义配置文件。
-- 运行 `gradle javadoc` 可以生成自动文档。
-
+- Running `gradle run` will use the default configuration file in the `resources` folder. Use `gradle run --args="${CONFIG_PATH}"` to load a custom configuration file.
+- Run `gradle javadoc` to generate automated documentation.
 
