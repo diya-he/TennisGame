@@ -1,11 +1,11 @@
-* 所有不同的设计模式都被分成文件夹。
-* 使用的3种设计模式是State、Observer和Memento
-> Memento模式-（Caretaker.java、Memento.java、Game.java（充当组织器））
+* All the different design patterns are organized into folders.
+* The 3 design patterns used are State, Observer and Memento
+> Memento pattern - (Caretaker.java, Memento.java, Game.java (acts as an organizer))
 
-> 状态设计模式（状态接口-GameState.java，具体类cheatstate.java，movingState.java、SaveState.java和SaveCheatState.java）
+> State Design Pattern (State Interface - GameState.java, concrete classes cheatstate.java, movingState.java, SaveState.java and SaveCheatState.java)
 
-> 观察者模式（Subject接口Subject.java、Observer、Concrete Subject ball.java、观察者接口Observer.java、Concrete-Observer BallObserver.ja）
+> Observer pattern (Subject interface Subject.java, Observer, Concrete Subject ball.java, Observer interface Observer.java, Concrete-Observer BallObserver.ja)
 
-还添加了对其他设计模式的修改。
-表的大小已修改为适合按钮
-绿色球在绿色桌子上看不见
+Modifications to other design patterns have also been added.
+The size of the table has been modified to fit the buttons
+The green ball is invisible on the green table
